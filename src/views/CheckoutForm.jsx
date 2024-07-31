@@ -3,14 +3,13 @@ import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
 import axios from 'utils/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from '@mui/material/Button';
 
 import CardSection from "./CardSection";
 
-
 const CheckoutForm = ({ stripe, elements }) => {
     const productPriceRef = useRef(null);
-    const [amount, setAmount] = useState(999);
-    const notify = () => toast("Wow so easy!");
+    const [amount, setAmount] = useState(0);
 
     useEffect(() => {
         if (productPriceRef.current) {
@@ -25,7 +24,6 @@ const CheckoutForm = ({ stripe, elements }) => {
         if (!stripe || !elements) {
             return;
         }
-
         const card = elements.getElement(CardElement);
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -50,7 +48,7 @@ const CheckoutForm = ({ stripe, elements }) => {
                         'Content-Type': 'application/json'
                     }
                 });
-                toast("Wow so easy!");
+                toast("Payment Successful");
                 console.log(response.data);
             } catch (e) {
                 const errorMessage = e?.response.data.message;
@@ -64,12 +62,12 @@ const CheckoutForm = ({ stripe, elements }) => {
 
     return (
         <div>
-            <div class="product-info">
-                <h3 className="product-title">Apple MacBook Pro</h3>
-                <h4 className="product-price" >$999</h4>
-            </div>
+            <ToastContainer />
             <form onSubmit={handleSubmit}>
                 <CardSection />
+                {/* <Button disabled={!stripe} variant="contained" sx={{ textTransform: 'none', mt: 3 }}>
+                    Buy Now
+                </Button> */}
                 <button disabled={!stripe} className="btn-pay">
                     Buy Now
                 </button>

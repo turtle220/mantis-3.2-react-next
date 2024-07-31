@@ -46,6 +46,14 @@ import LeftOutlined from '@ant-design/icons/LeftOutlined';
 import CheckOutlined from '@ant-design/icons/CheckOutlined';
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 
+import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from 'views/CheckOutForm';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const stripePromise = loadStripe('pk_test_51PhdC0KpQ0JFa0DDQk92u3gzRovyX43orvYKYcVITxxvKiZB1E4poPtY1MlicrbWehYfzxBJi0eyTMoUfG7fYCMo00K8ktoPSf');
+
 const master = '/assets/images/e-commerce/master-card.png';
 const paypalcard = '/assets/images/e-commerce/paypal.png';
 
@@ -100,7 +108,7 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
     setPaymentMethod(value);
   };
 
-  const completeHandler = () => {
+  const completeHandler = (e) => {
     if (payment === 'card' && (cards === '' || cards === null)) {
       openSnackbar({
         open: true,
@@ -112,6 +120,10 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
         }
       });
     } else {
+      // event.preventDefault();
+      if (!stripe || !elements) {
+        return;
+      }
       onNext();
       setComplete(true);
     }
@@ -158,17 +170,23 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                 <Grid item xs={12}>
                   <Grid container rowSpacing={2}>
                     <Grid item xs={12}>
+                      <div style={{ width: '100%' }}>
+                        <Elements stripe={stripePromise}>
+                          <CheckoutForm />
+                        </Elements>
+                      </div>
                       <Grid container>
                         <Grid item xs={5}>
-                          <Stack>
+
+                          {/* <Stack>
                             <InputLabel>Card Number :</InputLabel>
                             <Typography variant="caption" color="text.secondary" sx={{ display: { xs: 'none', sm: 'flex' } }}>
                               Enter the 16 digit card number on the card
                             </Typography>
-                          </Stack>
+                          </Stack> */}
                         </Grid>
                         <Grid item xs={7}>
-                          <TextField
+                          {/* <TextField
                             fullWidth
                             InputProps={{
                               startAdornment: type !== 'cod' ? <InputAdornment position="start">{getImage(type)}</InputAdornment> : null,
@@ -178,11 +196,11 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                                 </InputAdornment>
                               )
                             }}
-                          />
+                          /> */}
                         </Grid>
                       </Grid>
                     </Grid>
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                       <Grid container>
                         <Grid item xs={5}>
                           <Stack>
@@ -206,8 +224,8 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                           </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
-                    <Grid item xs={12}>
+                    </Grid> */}
+                    {/* <Grid item xs={12}>
                       <Grid container>
                         <Grid item xs={5}>
                           <Stack>
@@ -231,8 +249,8 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                           />
                         </Grid>
                       </Grid>
-                    </Grid>
-                    <Grid item xs={12}>
+                    </Grid> */}
+                    {/* <Grid item xs={12}>
                       <Grid container>
                         <Grid item xs={5}>
                           <Stack>
@@ -255,11 +273,11 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                           />
                         </Grid>
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </Grid>
               )}
-              {type !== 'cod' && (
+              {/* {type !== 'cod' && (
                 <Grid item xs={12}>
                   <Stack direction="row" spacing={1} justifyContent="flex-end">
                     <Button variant="outlined" color="secondary">
@@ -270,8 +288,8 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                     </Button>
                   </Stack>
                 </Grid>
-              )}
-              <Grid item xs={12}>
+              )} */}
+              {/* <Grid item xs={12}>
                 <Stack direction="row" spacing={0} alignItems="center">
                   <Grid item xs={6}>
                     <Divider />
@@ -281,8 +299,8 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                     <Divider />
                   </Grid>
                 </Stack>
-              </Grid>
-              <Grid item xs={12} sm={12} lg={10}>
+              </Grid> */}
+              {/* <Grid item xs={12} sm={12} lg={10}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6} lg={5}>
                     <PaymentCard type="mastercard" paymentType={type} cardHandler={cardHandler} />
@@ -291,7 +309,7 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                     <PaymentCard type="visa" paymentType={type} cardHandler={cardHandler} />
                   </Grid>
                 </Grid>
-              </Grid>
+              </Grid> */}
             </Grid>
           </MainCard>
           <Button variant="text" color="secondary" startIcon={<LeftOutlined />} onClick={onBack}>
@@ -378,9 +396,16 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
             ))}
           </MainCard>
           <OrderSummary checkout={checkout} show={false} />
-          <Button variant="contained" sx={{ textTransform: 'none', mt: 3 }} onClick={completeHandler} fullWidth>
-            Process to Checkout
-          </Button>
+          <form>
+            {/* <CardSection /> */}
+            {/* <Button variant="contained" sx={{ textTransform: 'none', mt: 3 }} onClick={completeHandler} fullWidth>
+              Process to Checkout
+            </Button> */}
+            {/* <button disabled={!stripe} className="btn-pay">
+              Buy Now123
+            </button> */}
+          </form>
+
           <OrderComplete open={complete} />
         </Stack>
       </Grid>

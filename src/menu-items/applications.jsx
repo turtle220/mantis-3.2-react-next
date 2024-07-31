@@ -17,11 +17,13 @@ import AppstoreAddOutlined from '@ant-design/icons/AppstoreAddOutlined';
 import PlusOutlined from '@ant-design/icons/PlusOutlined';
 import LinkOutlined from '@ant-design/icons/LinkOutlined';
 import DollarOutlined from '@ant-design/icons/DollarOutlined';
+import LineChartOutlined from '@ant-design/icons/LineChartOutlined';
 
 // type
 
 // icons
 const icons = {
+  LineChartOutlined,
   DollarOutlined,
   BuildOutlined,
   CalendarOutlined,
@@ -83,8 +85,8 @@ const applications = {
       ]
     },
     {
-      id: 'profile',
-      title: <FormattedMessage id="profile" />,
+      id: 'Account Settings',
+      title: <FormattedMessage id="Account Settings" />,
       type: 'collapse',
       icon: icons.UserOutlined,
       children: [
@@ -109,7 +111,15 @@ const applications = {
           url: '/pages/pricing',
           // icon: icons.DollarOutlined
         },
+
       ]
+    },
+    {
+      id: 'Reporting',
+      title: <FormattedMessage id="Reporting" />,
+      type: 'item',
+      url: '/widget/chart',
+      icon: icons.LineChartOutlined
     },
     // {
     //   id: 'chat',

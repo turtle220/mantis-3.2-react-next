@@ -10,7 +10,7 @@ import pages from './pages';
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-  items: [applications, widget]
+  items: [applications]
   // items: [applications, widget, formsTables, chartsMap, samplePage, pages, other]
 };
 

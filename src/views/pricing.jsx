@@ -155,11 +155,11 @@ export default function Pricing() {
 
   return (
     <Grid container spacing={3}>
-      <div>
+      {/* <div>
         <Elements stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
-      </div>
+      </div> */}
 
 
       <Grid item xs={12}>

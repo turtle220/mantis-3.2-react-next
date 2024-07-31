@@ -19,23 +19,23 @@ const widget = {
   icon: icons.IdcardOutlined,
   type: 'group',
   children: [
+    // {
+    //   id: 'statistics',
+    //   title: <FormattedMessage id="statistics" />,
+    //   type: 'item',
+    //   url: '/widget/statistics',
+    //   icon: icons.IdcardOutlined
+    // },
+    // {
+    //   id: 'data',
+    //   title: <FormattedMessage id="data" />,
+    //   type: 'item',
+    //   url: '/widget/data',
+    //   icon: icons.DatabaseOutlined
+    // },
     {
-      id: 'statistics',
-      title: <FormattedMessage id="statistics" />,
-      type: 'item',
-      url: '/widget/statistics',
-      icon: icons.IdcardOutlined
-    },
-    {
-      id: 'data',
-      title: <FormattedMessage id="data" />,
-      type: 'item',
-      url: '/widget/data',
-      icon: icons.DatabaseOutlined
-    },
-    {
-      id: 'chart',
-      title: <FormattedMessage id="chart" />,
+      id: 'Reporting',
+      title: <FormattedMessage id="Reporting" />,
       type: 'item',
       url: '/widget/chart',
       icon: icons.LineChartOutlined

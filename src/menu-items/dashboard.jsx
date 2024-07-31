@@ -13,7 +13,7 @@ import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 
 const icons = {
   dashboard: DashboardOutlined,
-  components: GoldOutlined,
+  // components: GoldOutlined,
   loading: LoadingOutlined
 };
 
@@ -71,15 +71,17 @@ export function MenuFromAPI() {
     return list;
   };
 
-  const childrenList = menu?.children?.map((subList) => {
-    return itemList(subList);
-  });
+  const childrenList = menu?.children?.filter(subList => subList.id !== 'components')
+    .map((subList) => {
+      return itemList(subList);
+    });
 
   let menuList = fillItem(menu, childrenList);
   return menuList;
 }
 
 function fillItem(item, children) {
+  console.log(children, '====childeren')
   return {
     ...item,
     title: <FormattedMessage id={`${item?.title}`} />,
