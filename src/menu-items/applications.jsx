@@ -2,8 +2,8 @@
 import { FormattedMessage } from 'react-intl';
 
 // project-imports
-import { handlerCustomerDialog } from 'api/customer';
-import { NavActionType } from 'config';
+// import { handlerCustomerDialog } from 'api/customer';
+// import { NavActionType } from 'config';
 
 // assets
 import BuildOutlined from '@ant-design/icons/BuildOutlined';
@@ -108,10 +108,9 @@ const applications = {
           id: 'pricing',
           title: <FormattedMessage id="pricing" />,
           type: 'item',
-          url: '/pages/pricing',
+          url: '/pages/pricing'
           // icon: icons.DollarOutlined
-        },
-
+        }
       ]
     },
     {
@@ -120,7 +119,7 @@ const applications = {
       type: 'item',
       url: '/widget/chart',
       icon: icons.LineChartOutlined
-    },
+    }
     // {
     //   id: 'chat',
     //   title: <FormattedMessage id="chat" />,

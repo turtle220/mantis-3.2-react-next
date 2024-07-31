@@ -6,7 +6,7 @@ import { useGetMenu } from 'api/menu';
 
 // assets
 import DashboardOutlined from '@ant-design/icons/DashboardOutlined';
-import GoldOutlined from '@ant-design/icons/GoldOutlined';
+// import GoldOutlined from '@ant-design/icons/GoldOutlined';
 import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 
 // type
@@ -71,7 +71,8 @@ export function MenuFromAPI() {
     return list;
   };
 
-  const childrenList = menu?.children?.filter(subList => subList.id !== 'components')
+  const childrenList = menu?.children
+    ?.filter((subList) => subList.id !== 'components')
     .map((subList) => {
       return itemList(subList);
     });
@@ -81,7 +82,7 @@ export function MenuFromAPI() {
 }
 
 function fillItem(item, children) {
-  console.log(children, '====childeren')
+  console.log(children, '====childeren');
   return {
     ...item,
     title: <FormattedMessage id={`${item?.title}`} />,

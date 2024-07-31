@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
 // next
-import Image from 'next/image';
+// import Image from 'next/image';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputLabel from '@mui/material/InputLabel';
+// import InputAdornment from '@mui/material/InputAdornment';
+// import InputLabel from '@mui/material/InputLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Link from '@mui/material/Link';
 import List from '@mui/material/List';
@@ -20,8 +20,8 @@ import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Divider from '@mui/material/Divider';
+// import TextField from '@mui/material/TextField';
+// import Divider from '@mui/material/Divider';
 
 // project imports
 import AddAddress from './AddAddress';
@@ -29,31 +29,31 @@ import AddressCard from './AddressCard';
 import CartDiscount from './CartDiscount';
 import OrderComplete from './OrderComplete';
 import OrderSummary from './OrderSummery';
-import PaymentCard from './PaymentCard';
+// import PaymentCard from './PaymentCard';
 import PaymentOptions from './PaymentOptions';
 import PaymentSelect from './PaymentSelect';
 import MainCard from 'components/MainCard';
 import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 
-import { setPaymentCard, setPaymentMethod } from 'api/cart';
-import { openSnackbar } from 'api/snackbar';
+// import { setPaymentCard, setPaymentMethod } from 'api/cart';
+// import { openSnackbar } from 'api/snackbar';
 
 // assets
-import CreditCardOutlined from '@ant-design/icons/CreditCardOutlined';
-import LockOutlined from '@ant-design/icons/LockOutlined';
+// import CreditCardOutlined from '@ant-design/icons/CreditCardOutlined';
+// import LockOutlined from '@ant-design/icons/LockOutlined';
 import LeftOutlined from '@ant-design/icons/LeftOutlined';
-import CheckOutlined from '@ant-design/icons/CheckOutlined';
+// import CheckOutlined from '@ant-design/icons/CheckOutlined';
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 
-import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+// import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from 'views/CheckOutForm';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PaypalCheckout from "views/PaypalCheckout"
-import { PayPalScriptProvider, PayPalButtons, usePayPalHostedFields } from "@paypal/react-paypal-js";
+import PaypalCheckout from 'views/PaypalCheckout';
+// import { PayPalScriptProvider, PayPalButtons, usePayPalHostedFields } from "@paypal/react-paypal-js";
 // import {
 //   PayPalScriptProvider,
 //   PayPalHostedFieldsProvider,
@@ -62,17 +62,19 @@ import { PayPalScriptProvider, PayPalButtons, usePayPalHostedFields } from "@pay
 // } from "@paypal/react-paypal-js";
 // const [{ isPending }] = usePayPalScriptReducer();
 
-const stripePromise = loadStripe('pk_test_51PhdC0KpQ0JFa0DDQk92u3gzRovyX43orvYKYcVITxxvKiZB1E4poPtY1MlicrbWehYfzxBJi0eyTMoUfG7fYCMo00K8ktoPSf');
+const stripePromise = loadStripe(
+  'pk_test_51PhdC0KpQ0JFa0DDQk92u3gzRovyX43orvYKYcVITxxvKiZB1E4poPtY1MlicrbWehYfzxBJi0eyTMoUfG7fYCMo00K8ktoPSf'
+);
 
-const master = '/assets/images/e-commerce/master-card.png';
-const paypalcard = '/assets/images/e-commerce/paypal.png';
+// const master = '/assets/images/e-commerce/master-card.png';
+// const paypalcard = '/assets/images/e-commerce/paypal.png';
 
-export default function Payment({ checkout, onBack, onNext, removeProduct, editAddress }) {
+export default function Payment({ checkout, onBack, removeProduct, editAddress }) {
   const theme = useTheme();
   const [type, setType] = useState('visa');
   const [payment, setPayment] = useState(checkout.payment.method);
   const [rows, setRows] = useState(checkout.products);
-  const [cards, setCards] = useState(checkout.payment.card);
+  // const [cards, setCards] = useState(checkout.payment.card);
   const [select, setSelect] = useState(null);
 
   const [open, setOpen] = useState(false);
@@ -99,12 +101,12 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
     setRows(checkout.products);
   }, [checkout.products]);
 
-  const cardHandler = (card) => {
-    if (payment === 'card') {
-      setCards(card);
-      setPaymentCard(card);
-    }
-  };
+  // const cardHandler = (card) => {
+  //   if (payment === 'card') {
+  //     setCards(card);
+  //     setPaymentCard(card);
+  //   }
+  // };
 
   const handlePaymentMethod = (value) => {
     if (value === 'card') {
@@ -118,36 +120,36 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
     setPaymentMethod(value);
   };
 
-  const completeHandler = (e) => {
-    if (payment === 'card' && (cards === '' || cards === null)) {
-      openSnackbar({
-        open: true,
-        message: 'Select Payment Card',
-        variant: 'alert',
+  // const completeHandler = () => {
+  //   if (payment === 'card' && (cards === '' || cards === null)) {
+  //     openSnackbar({
+  //       open: true,
+  //       message: 'Select Payment Card',
+  //       variant: 'alert',
 
-        alert: {
-          color: 'error'
-        }
-      });
-    } else {
-      // event.preventDefault();
-      if (!stripe || !elements) {
-        return;
-      }
-      onNext();
-      setComplete(true);
-    }
-  };
+  //       alert: {
+  //         color: 'error'
+  //       }
+  //     });
+  //   } else {
+  //     // event.preventDefault();
+  //     if (!stripe || !elements) {
+  //       return;
+  //     }
+  //     onNext();
+  //     setComplete(true);
+  //   }
+  // };
 
-  const getImage = (cardType) => {
-    if (cardType === 'visa') {
-      return <Image src={master} alt="card" width={24} height={16} style={{ maxWidth: '100%', height: 'auto' }} />;
-    }
-    if (cardType === 'mastercard') {
-      return <Image src={paypalcard} alt="card" width={50} height={14} style={{ maxWidth: '100%', height: 'auto' }} />;
-    }
-    return null;
-  };
+  // const getImage = (cardType) => {
+  //   if (cardType === 'visa') {
+  //     return <Image src={master} alt="card" width={24} height={16} style={{ maxWidth: '100%', height: 'auto' }} />;
+  //   }
+  //   if (cardType === 'mastercard') {
+  //     return <Image src={paypalcard} alt="card" width={50} height={14} style={{ maxWidth: '100%', height: 'auto' }} />;
+  //   }
+  //   return null;
+  // };
 
   return (
     <Grid container spacing={3}>
@@ -181,17 +183,15 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                 <Grid item xs={12}>
                   <Grid container rowSpacing={2}>
                     <Grid item xs={12}>
-                      {type === 'visa' &&
+                      {type === 'visa' && (
                         <div style={{ width: '100%' }}>
                           <Elements stripe={stripePromise}>
                             <CheckoutForm />
                           </Elements>
                         </div>
-                      }
+                      )}
 
-                      {type === 'mastercard' &&
-                        <PaypalCheckout />
-                      }
+                      {type === 'mastercard' && <PaypalCheckout />}
                       <Grid container>
                         <Grid item xs={5}>
                           {/* <Stack>

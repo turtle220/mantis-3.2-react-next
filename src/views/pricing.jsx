@@ -25,13 +25,14 @@ import StandardPlusLogo from 'sections/price/StandardPlus';
 
 // assets
 import CheckOutlined from '@ant-design/icons/CheckOutlined';
-import getStripe from "../components/getStripe";
+import getStripe from '../components/getStripe';
 
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import CheckoutForm from "./CheckoutForm";
-const stripePromise = loadStripe('pk_test_51PhdC0KpQ0JFa0DDQk92u3gzRovyX43orvYKYcVITxxvKiZB1E4poPtY1MlicrbWehYfzxBJi0eyTMoUfG7fYCMo00K8ktoPSf');
-
+// import { Elements } from '@stripe/react-stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
+// import CheckoutForm from './CheckoutForm';
+// const stripePromise = loadStripe(
+//   'pk_test_51PhdC0KpQ0JFa0DDQk92u3gzRovyX43orvYKYcVITxxvKiZB1E4poPtY1MlicrbWehYfzxBJi0eyTMoUfG7fYCMo00K8ktoPSf'
+// );
 
 // plan list
 const plans = [
@@ -93,13 +94,13 @@ export default function Pricing() {
         {
           price: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
           // price: 'price_1PhlEJKpQ0JFa0DDsM9Qf3je',
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ],
       mode: 'subscription',
       successUrl: `http://localhost:8081/success`,
       cancelUrl: `http://localhost:8081/cancel`,
-      customerEmail: 'customer@gmail.com',
+      customerEmail: 'customer@gmail.com'
     });
     console.warn(error.message);
   }
@@ -111,13 +112,13 @@ export default function Pricing() {
         {
           // price: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
           price: 'price_1PhlEJKpQ0JFa0DDsM9Qf3je',
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ],
       mode: 'subscription',
       successUrl: `http://localhost:8081/success`,
       cancelUrl: `http://localhost:8081/cancel`,
-      customerEmail: 'customer@gmail.com',
+      customerEmail: 'customer@gmail.com'
     });
     console.warn(error.message);
   }
@@ -129,13 +130,13 @@ export default function Pricing() {
         {
           // price: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
           price: 'price_1PhlhMKpQ0JFa0DDGRwsST6B',
-          quantity: 1,
-        },
+          quantity: 1
+        }
       ],
       mode: 'subscription',
       successUrl: `http://localhost:8081/success`,
       cancelUrl: `http://localhost:8081/cancel`,
-      customerEmail: 'customer@gmail.com',
+      customerEmail: 'customer@gmail.com'
     });
     console.warn(error.message);
   }
@@ -149,7 +150,7 @@ export default function Pricing() {
       case 'Extended':
         return handleCheckoutSub3;
       default:
-        return () => { }; // Return a no-op function if no match is found
+        return () => {}; // Return a no-op function if no match is found
     }
   };
 
@@ -160,7 +161,6 @@ export default function Pricing() {
           <CheckoutForm />
         </Elements>
       </div> */}
-
 
       <Grid item xs={12}>
         <Alert variant="outlined" severity="info" sx={{ borderColor: 'info.main' }}>
