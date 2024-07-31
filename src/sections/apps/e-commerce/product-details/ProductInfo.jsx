@@ -19,6 +19,8 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import { IconButton } from '@mui/material';
+import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
 
 // third-party
 import { useFormik, Form, FormikProvider } from 'formik';
@@ -88,8 +90,14 @@ export default function ProductInfo({ product }) {
   const theme = useTheme();
 
   const [value, setValue] = useState(1);
+  const [priceDirection, setPriceDirection] = useState(null);
   const router = useRouter();
   const { cart } = useGetCart();
+
+
+  const handleToggle = () => {
+    setPriceDirection((prev) => (prev === 'up' ? 'down' : 'up'));
+  };
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -250,7 +258,16 @@ export default function ProductInfo({ product }) {
               </Stack>
             </Stack>
             <Stack direction="row" alignItems="center" spacing={1}>
+              <IconButton onClick={handleToggle} size="small">
+                {priceDirection === 'up' ? (
+                  <ArrowUpward color="success" />
+                ) : (
+                  <ArrowDownward color="error" />
+                )}
+              </IconButton>
+
               <Typography variant="h3">${product.offerPrice}</Typography>
+
               {product.salePrice && (
                 <Typography variant="h4" color="text.secondary" sx={{ textDecoration: 'line-through', opacity: 0.5, fontWeight: 400 }}>
                   ${product.salePrice}
