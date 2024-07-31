@@ -49,10 +49,10 @@ import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 // import { ElementsConsumer, CardElement } from "@stripe/react-stripe-js";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import CheckoutForm from 'views/CheckOutForm';
-// import { ToastContainer, toast } from 'react-toastify';
+import CheckoutForm from '../../../../views/CheckoutForm';
+import PaypalCheckout from '../../../../views/PaypalCheckout';
 import 'react-toastify/dist/ReactToastify.css';
-import PaypalCheckout from 'views/PaypalCheckout';
+// import { ToastContainer, toast } from 'react-toastify';
 // import { PayPalScriptProvider, PayPalButtons, usePayPalHostedFields } from "@paypal/react-paypal-js";
 // import {
 //   PayPalScriptProvider,
