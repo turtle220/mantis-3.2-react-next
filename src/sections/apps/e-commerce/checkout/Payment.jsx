@@ -52,6 +52,16 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from 'views/CheckOutForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PaypalCheckout from "views/PaypalCheckout"
+import { PayPalScriptProvider, PayPalButtons, usePayPalHostedFields } from "@paypal/react-paypal-js";
+// import {
+//   PayPalScriptProvider,
+//   PayPalHostedFieldsProvider,
+//   PayPalHostedField,
+//   usePayPalHostedFields,
+// } from "@paypal/react-paypal-js";
+// const [{ isPending }] = usePayPalScriptReducer();
+
 const stripePromise = loadStripe('pk_test_51PhdC0KpQ0JFa0DDQk92u3gzRovyX43orvYKYcVITxxvKiZB1E4poPtY1MlicrbWehYfzxBJi0eyTMoUfG7fYCMo00K8ktoPSf');
 
 const master = '/assets/images/e-commerce/master-card.png';
@@ -166,18 +176,24 @@ export default function Payment({ checkout, onBack, onNext, removeProduct, editA
                   </RadioGroup>
                 </FormControl>
               </Grid>
+
               {type !== 'cod' && (
                 <Grid item xs={12}>
                   <Grid container rowSpacing={2}>
                     <Grid item xs={12}>
-                      <div style={{ width: '100%' }}>
-                        <Elements stripe={stripePromise}>
-                          <CheckoutForm />
-                        </Elements>
-                      </div>
+                      {type === 'visa' &&
+                        <div style={{ width: '100%' }}>
+                          <Elements stripe={stripePromise}>
+                            <CheckoutForm />
+                          </Elements>
+                        </div>
+                      }
+
+                      {type === 'mastercard' &&
+                        <PaypalCheckout />
+                      }
                       <Grid container>
                         <Grid item xs={5}>
-
                           {/* <Stack>
                             <InputLabel>Card Number :</InputLabel>
                             <Typography variant="caption" color="text.secondary" sx={{ display: { xs: 'none', sm: 'flex' } }}>

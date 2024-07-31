@@ -3,6 +3,9 @@ import { Public_Sans } from 'next/font/google';
 
 // ==============================|| THEME CONSTANT ||============================== //
 
+export const CLIENT_ID = process.env.CLIENT_ID || "AXqvb-q2kKw3gWsdsFU0cdIv4K4pvbLccaiirgFdj5Dm0PO1z4qRBv7qKS7XDtlIbSPZXbu03GTreIJF"
+export const APP_SECRET = process.env.APP_SECRET || "<YOUR_APP_SECRET>"
+
 export const twitterColor = '#1DA1F2';
 export const facebookColor = '#3b5998';
 export const linkedInColor = '#0e76a8';
